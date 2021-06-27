@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Crear persona</h1>
+<div mat-dialog-content class="mat-typography">
+  <form [formGroup]="personForm">
+    <div>
+      <mat-form-field class="fields">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" type="string" placeholder="Nombre del padre" pattern="^[a-zA-Z ]*$" required>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" type="submit" class="mr-10" [disabled]="!personForm.valid" (click)="onSubmit()">Crear
+		persona</button>
+  <button mat-raised-button (click)="hideDialog()">Cancelar</button>
+</div>

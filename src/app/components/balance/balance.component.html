@@ -1,0 +1,8 @@
+<h1>Balance</h1>
+<div class="fields" *ngFor="let parent of balance">
+  <span>{{parent.parent}}:</span>
+  <span [ngClass]="obtainCss(parent)">
+		{{parent.duration | duration:'h m'}}
+	</span>
+</div>
+<button mat-raised-button [routerLink]="['/home']">Volver</button>

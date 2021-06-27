@@ -1,0 +1,15 @@
+<div class="header-title">
+  <h1>Cuidados:</h1>
+  <div class="btn-title">
+    <button mat-raised-button [routerLink]="['/balance']">Balance</button>
+    <button mat-raised-button color="primary" (click)="openPersonForm()">Añadir persona</button>
+    <button mat-raised-button color="primary" [routerLink]="['/cares-form']" [disabled]="parentsList.length < 2">Añadir
+			cuidado</button>
+  </div>
+</div>
+<div *ngIf="caresList.length > 0">
+  <app-care *ngFor="let care of caresList" [care]="care" [parents]="parentsList"></app-care>
+</div>
+<div *ngIf="caresList.length === 0">
+  No hay cuidados.
+</div>

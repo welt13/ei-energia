@@ -1,0 +1,60 @@
+<h1>Crear cuidado</h1>
+<form [formGroup]="careForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field class="fields">
+      <mat-label>Padre</mat-label>
+      <mat-select formControlName="parentId" required>
+        <mat-option *ngFor="let parent of parents" [value]="parent.id">
+          {{parent.name}}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Deben ser un padre distinto al que cuida al niño</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="fields">
+      <mat-label>Cuidador</mat-label>
+      <mat-select formControlName="caretakerId" required>
+        <mat-option *ngFor="let parent of parents" [value]="parent.id">
+          {{parent.name}}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Deben ser un padre distinto al que deja al niño</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="fields">
+      <mat-label>Duración</mat-label>
+      <input matInput formControlName="duration" type="number" placeholder="Duracion en minutos" required>
+      <mat-hint>Duración en minutos</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input matInput [matDatepicker]="dp3" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="fields">
+      <mat-label>Hora Inicio</mat-label>
+      <input matInput formControlName="hour" placeholder="Hora de inicio" pattern="^([01]?[0-9]|2[0-3]):[0-5][0-9]$" required>
+      <mat-hint>Formato hh:mm</mat-hint>
+      <mat-error *ngIf="careForm.controls.hour.invalid">
+        Error en el formato
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="fields">
+      <mat-label>Observaciones</mat-label>
+      <textarea matInput formControlName="observations"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" class="mr-10" [disabled]="!careForm.valid">Crear
+		cuidado</button>
+  <button mat-raised-button [routerLink]="['/home']">Volver</button>
+</form>
